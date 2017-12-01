@@ -1,0 +1,20 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+body {
+	overflow-y: hidden;
+	overflow-x: hidden;
+	background: #0000ff;
+}
+#menu {
+	margin: 10% 39% 0 39%;
+	width: 20%;
+	background: green;
+	padding: 1%;
+}
+button {
+	display: block;
+	width: 100%;
+	margin-top: 1%;
+}

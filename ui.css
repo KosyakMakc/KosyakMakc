@@ -1,0 +1,51 @@
+.resources {
+	position: fixed;
+	top: 5px;
+	right: 5px;
+	background: rgba(255, 255, 255, 0.4);
+}
+.debug {
+	position: fixed;
+	top: 5px;
+	left: 5px;
+	background: rgba(255, 255, 255, 0.4);
+}
+.commands {
+	position: fixed;
+	bottom: 5px;
+	right: 5px;
+	padding: 5px;
+	background: rgba(0, 0, 0, 0.2);
+}
+.commands:hover {
+	background: rgba(0, 0, 0, 0.5);
+}
+.command {
+	opacity: 0.5;
+	display: inline-block;
+	margin-left: 5px;
+}
+.command:last-child {
+	margin-left: 0;
+}
+.command:hover {
+	opacity: 0.8;
+}
+.command:active {
+	opacity: 1;
+}
+.info {
+	opacity: 0.8;
+	display: none;
+	position: fixed;
+	bottom: 5px;
+	left: 5px;
+	padding: 5px;
+	background: #fff;
+}
+.info:hover {
+	opacity: 1;
+}
+#unit-name, #unit-hp, #unit-damage, #unit-attack-distance {
+	margin: 5px;
+}
