@@ -24,8 +24,8 @@ function starter () {
 				var cnv = document.createElement("canvas");
 				var maxX = 0;
 
-				for (let y = 0; y < floor.map.length; y++)
-					for (let x = 0; x < floor.map[y].length; x++)
+				for (var y = 0; y < floor.map.length; y++)
+					for (var x = 0; x < floor.map[y].length; x++)
 						if (x > maxX) maxX = x+1;
 
 				cnv.height = main.camera.maxZoom*floor.map.length;
@@ -35,12 +35,12 @@ function starter () {
 				var stak = {};
 				var stakLayer = [];
 
-				for (let y = 0; y < floor.map.length; y++) for (let x = 0; x < floor.map[y].length; x++) if(floor.map[y]) if(floor.map[y][x]) {
+				for (var y = 0; y < floor.map.length; y++) for (var x = 0; x < floor.map[y].length; x++) if(floor.map[y]) if(floor.map[y][x]) {
 					stakLayer.push(floor.map[y][x]);
-					for (let j = 0; j < floor.map[y][x].object.length; j++)
+					for (var j = 0; j < floor.map[y][x].object.length; j++)
 						stak[floor.map[y][x].object[j].fraction.name + ":" + floor.map[y][x].object[j].unitId] = floor.map[y][x].object[j];
 				}
-				for (let key in stak) stakLayer.push(stak[key]);
+				for (var key in stak) stakLayer.push(stak[key]);
 				
 				stakLayer.sort(function (a, b) {
 					if (a.layer > b.layer) return 1
@@ -48,14 +48,14 @@ function starter () {
 					else return 0;
 				});
 			
-				for (let i = 0; i < stakLayer.length; i++) {
+				for (var i = 0; i < stakLayer.length; i++) {
 					if(stakLayer[i].hide) continue;
-					let z = stakLayer[i].size ? stakLayer[i].size*main.camera.maxZoom : main.camera.maxZoom;
-					let x = stakLayer[i].x*main.camera.maxZoom;
-					let y = stakLayer[i].y*main.camera.maxZoom;
+					var z = stakLayer[i].size ? stakLayer[i].size*main.camera.maxZoom : main.camera.maxZoom;
+					var x = stakLayer[i].x*main.camera.maxZoom;
+					var y = stakLayer[i].y*main.camera.maxZoom;
 
 					if (main.images[stakLayer[i].animation + stakLayer[i].animationFrame] || main.images[stakLayer[i].img]) {
-						let img = main.images[stakLayer[i].animation + stakLayer[i].animationFrame + (stakLayer[i].fraction ? stakLayer[i].fraction.name : "")]
+						var img = main.images[stakLayer[i].animation + stakLayer[i].animationFrame + (stakLayer[i].fraction ? stakLayer[i].fraction.name : "")]
 						|| main.images[stakLayer[i].animation + stakLayer[i].animationFrame]
 						|| main.images[stakLayer[i].img + (stakLayer[i].fraction ? stakLayer[i].fraction.name : "")]
 						|| main.images[stakLayer[i].img];
@@ -107,10 +107,10 @@ function starter () {
 			else if (a.layer < b.layer) return -1;
 			else return 0;
 		});
-		for (let i = 0; i < main.particles.list.length; i++)
+		for (var i = 0; i < main.particles.list.length; i++)
 			main.particles.list[i].update();
 
-		for (let i in main.level.floors) {
+		for (var i in main.level.floors) {
 			main.level.floors[i].emit("check");
 			stakLayer.push(main.level.floors[i]);
 		}
@@ -120,18 +120,18 @@ function starter () {
 			else if (a.layer < b.layer) return -1;
 			else return 0;
 		});
-		for (let i = 0; i < stakLayer.length; i++)
+		for (var i = 0; i < stakLayer.length; i++)
 			main.ctx.drawImage(stakLayer[i].cnv, x, y, w, h, -innerWidth/2, -innerHeight/2, innerWidth, innerHeight);
 
 		if (main.focus) {
 			main.ctx.lineWidth = main.focusLine;
 			main.ctx.strokeStyle = main.focus.fraction.name;
 			main.ctx.beginPath();
-			let x = (main.focus.x - main.camera.x)*main.camera.zoom;
-			let y = (main.focus.y - main.camera.y)*main.camera.zoom;
-			let size = main.camera.zoom*main.focus.size;
-			let xs = x + size;
-			let ys = y + size;
+			var x = (main.focus.x - main.camera.x)*main.camera.zoom;
+			var y = (main.focus.y - main.camera.y)*main.camera.zoom;
+			var size = main.camera.zoom*main.focus.size;
+			var xs = x + size;
+			var ys = y + size;
 			main.ctx.moveTo(x, y);
 			main.ctx.lineTo(xs, y);
 			main.ctx.lineTo(xs, ys);
@@ -141,12 +141,12 @@ function starter () {
 		}
 
 		// отрисовка частиц, in camera?
-		for (let i = 0; i < main.particles.list.length; i++) graphicsDraw(main.particles.list[i], main.ctx);
+		for (var i = 0; i < main.particles.list.length; i++) graphicsDraw(main.particles.list[i], main.ctx);
 
 		if (main.images[main.mouse.cursor]) {
-			let img = main.images[main.mouse.cursor];
-			let x = main.mouse.x;
-			let y = main.mouse.y;
+			var img = main.images[main.mouse.cursor];
+			var x = main.mouse.x;
+			var y = main.mouse.y;
 			if (main.mouse.type == "arrow") {
 				x -= innerWidth*0.5;
 				y -= innerHeight*0.5;
@@ -154,8 +154,8 @@ function starter () {
 				x -= (innerWidth + img.width)*0.5;
 				y -= (innerHeight + img.height)*0.5;
 			}
-			let w = img.width;
-			let h = img.height;
+			var w = img.width;
+			var h = img.height;
 			main.ctx.drawImage(img, x, y, w, h);
 		}
 		if(main.live) frame(engine);

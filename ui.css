@@ -2,34 +2,52 @@
 	position: fixed;
 	top: 5px;
 	right: 5px;
-	background: rgba(255, 255, 255, 0.4);
+	background: white;
+	opacity: 0.8;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 2px;
+}
+.resources:hover {
+	opacity: 1;
 }
 .debug {
 	position: fixed;
 	top: 5px;
 	left: 5px;
-	background: rgba(255, 255, 255, 0.4);
+	background: white;
+	opacity: 0.8;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 2px;
+}
+.debug:hover {
+	opacity: 1;
 }
 .commands {
 	position: fixed;
 	bottom: 5px;
 	right: 5px;
 	padding: 5px;
-	background: rgba(0, 0, 0, 0.2);
+	padding-bottom: 0;
+	background: white;
+	opacity: 0.8;
+	border: 1px solid black;
+	border-radius: 3px;
 }
 .commands:hover {
-	background: rgba(0, 0, 0, 0.5);
+	opacity: 1;
 }
 .command {
-	opacity: 0.5;
+	opacity: 0.8;
 	display: inline-block;
 	margin-left: 5px;
 }
-.command:last-child {
+.command:first-child {
 	margin-left: 0;
 }
 .command:hover {
-	opacity: 0.8;
+	opacity: 0.9;
 }
 .command:active {
 	opacity: 1;
@@ -42,6 +60,9 @@
 	left: 5px;
 	padding: 5px;
 	background: #fff;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 2px;
 }
 .info:hover {
 	opacity: 1;

@@ -46,14 +46,14 @@ main.mouse.on("pinch", function (event) {
 main.mouse.on("pinchend", function (event) {
 	main.mouse.zoom = main.camera.zoom;
 });
-main.cnv.addEventListener("mousewheel", function (a) {
+document.addEventListener("mousewheel", function (a) {
 	main.mouse.emit("pinchstart", {});
 	main.mouse.emit("pinch", {
 		scale: a.deltaY > 0 ? 0.9 : 1.1
 	});
 	main.mouse.emit("pinchend", {});
 });
-main.cnv.addEventListener("mousemove", function (a) {
+document.addEventListener("mousemove", function (a) {
 	if(!a.buttons) {
 		main.mouse.x = a.offsetX;
 		main.mouse.y = a.offsetY;

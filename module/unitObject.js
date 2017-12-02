@@ -19,9 +19,8 @@ main.players = new (function () {
 	main.on("frame", function () { for (var key in players) for (var i = 0; i < players[key].units.length; i++) players[key].units[i].control.update(); });
 })();
 main.on("loaded", function () { main.players.add("#ffffff"); });
-main.baseObject = {
-	angle: "down"
-};
+main.baseObject = {};
+main.baseObject.__proto__ = Events.prototype;
 main.baseObject.deconstract = function () {
 	this.emit("remove");
 	this.fraction.emit("removeUnit", this);
@@ -65,13 +64,12 @@ main.baseObject.physicalMoveTo = function (p) {
 	main.level.floors[0].draw = 1;
 }	
 main.UnitObject = function (type, obj) {
-	this.__proto__ = obj;
+	this.__proto__ = new Events();
 	this.__proto__.__proto__ = main.level.units[type];
-	this.__proto__.__proto__.__proto__.__proto__ = new Events();
 	this.control = new Control(this);
 	this.fraction = main.players.get(obj.fraction) || main.players.get("#ffffff");
 	this.unitId = this.fraction.units.length;
-	this.physicalMoveTo(obj);
+	this.physicalMoveTo({x: obj.x, y: obj.y});
 	this.fraction.units.push(this);
 	this.fraction.emit("addUnit", this);
 };

@@ -1,10 +1,10 @@
 'use strict';
-window.frame = (requestAnimationFrame || webkitRequestAnimationFrame || oRequestAnimationFrame || mozRequestAnimationFrame || function (cb) { setTimeout(cb, 50/3)});
+window.frame = (requestAnimationFrame || webkitRequestAnimationFrame || oRequestAnimationFrame || mozRequestAnimationFrame || function (cb) { setTimeout(cb, 17)});
 window.main = new Events();
 main.live = 1;
 main.cnv = document.getElementById("main");
 main.cnv.style.cursor = "none";
-main.fraction = "#0000ff";
+main.fraction = "#ff0000";
 main.deltaTime = 1;
 main.lastFrame = +new Date();
 main.GET = {};

@@ -68,6 +68,7 @@ main.level = {
 				{ name: "createMage",    ico: "img/mageIco.png" },
 				{ name: "delete",        ico: "img/deleteIco.png" }
 			],
+			angle: "down"
 		},
 		"mine": {
 			name: "mine",
@@ -79,6 +80,7 @@ main.level = {
 			commands: [
 				{ name: "wait", ico: "img/waitIco.png" },
 			],
+			angle: "down"
 		},
 		"mage": {
 			name: "mage",
@@ -102,6 +104,7 @@ main.level = {
 				{ name: "attack", ico: "img/attackIco.png", targetable: true }, 
 				{ name: "delete", ico: "img/deleteIco.png" }
 			],
+			angle: "down"
 		},
 		"footman": {
 			name: "footman",
@@ -123,6 +126,7 @@ main.level = {
 				{ name: "attack", ico: "img/attackIco.png", targetable: true },
 				{ name: "delete", ico: "img/deleteIco.png" }
 			],
+			angle: "down"
 		},
 		"worker": {
 			name: "worker",
@@ -141,6 +145,7 @@ main.level = {
 				{ name: "mining", ico: "img/miningIco.png", targetable: true },
 				{ name: "delete", ico: "img/deleteIco.png" }
 			],
+			angle: "down"
 		},
 	},
 	commands: {
@@ -179,7 +184,7 @@ main.level = {
 								}
 							},
 							close: function () {
-								mine.once("remove", onremove);
+								mine.remove("remove", onremove);
 							},
 						};
 					}
@@ -236,7 +241,7 @@ main.level = {
 							}
 						},
 						close: function () {
-							obj.once("remove", onremove);
+							obj.remove("remove", onremove);
 						}
 					};
 					return a;
