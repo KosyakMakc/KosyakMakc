@@ -11,9 +11,9 @@ function graphicsDraw(obj, ctx) {
 	var z = obj.size ? obj.size*main.camera.zoom : main.camera.zoom;
 	var x = (obj.x - main.camera.x)*main.camera.zoom;
 	var y = (obj.y - main.camera.y)*main.camera.zoom;
-	if (main.images[obj.animation + obj.animationFrame] || main.images[obj.img]) {
-		var img  = main.images[obj.animation + obj.animationFrame + (obj.fraction ? obj.fraction.name : "")]
-				|| main.images[obj.animation + obj.animationFrame]
+	if (main.images[obj.animation + ""] || main.images[obj.img]) {
+		var img  = main.images[obj.animation + (obj.fraction ? obj.fraction.name : "")]
+				|| main.images[obj.animation + ""]
 				|| main.images[obj.img + (obj.fraction ? obj.fraction.name : "")]
 				|| main.images[obj.img];
 		ctx.drawImage(img, x, y, z, z);

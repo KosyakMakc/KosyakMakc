@@ -1,3 +1,11 @@
+.msgs, .debug {
+	position: fixed;
+	top: 50%;
+	left: 10px;
+	background: transparent;
+	font-size: 1.5em;
+	font-weight: bold;
+}
 .resources {
 	position: fixed;
 	top: 5px;
@@ -5,24 +13,28 @@
 	background: white;
 	opacity: 0.8;
 	border: 1px solid black;
-	border-radius: 3px;
+	border-radius: 1em;
 	padding: 2px;
 }
 .resources:hover {
 	opacity: 1;
 }
-.debug {
+.button {
+	border-radius: 1em;
 	position: fixed;
 	top: 5px;
 	left: 5px;
 	background: white;
 	opacity: 0.8;
 	border: 1px solid black;
-	border-radius: 3px;
-	padding: 2px;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	color: #000	;
 }
-.debug:hover {
+.button:hover {
 	opacity: 1;
+	background: green;
 }
 .commands {
 	position: fixed;
@@ -39,6 +51,7 @@
 	opacity: 1;
 }
 .command {
+	cursor: pointer;
 	opacity: 0.8;
 	display: inline-block;
 	margin-left: 5px;
@@ -58,10 +71,9 @@
 	position: fixed;
 	bottom: 5px;
 	left: 5px;
-	padding: 5px;
 	background: #fff;
 	border: 1px solid black;
-	border-radius: 3px;
+	border-radius: 1em;
 	padding: 2px;
 }
 .info:hover {

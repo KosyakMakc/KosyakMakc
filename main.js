@@ -53,10 +53,9 @@ function starter () {
 					var z = stakLayer[i].size ? stakLayer[i].size*main.camera.maxZoom : main.camera.maxZoom;
 					var x = stakLayer[i].x*main.camera.maxZoom;
 					var y = stakLayer[i].y*main.camera.maxZoom;
-
-					if (main.images[stakLayer[i].animation + stakLayer[i].animationFrame] || main.images[stakLayer[i].img]) {
-						var img = main.images[stakLayer[i].animation + stakLayer[i].animationFrame + (stakLayer[i].fraction ? stakLayer[i].fraction.name : "")]
-						|| main.images[stakLayer[i].animation + stakLayer[i].animationFrame]
+					if (main.images[stakLayer[i].animation + ""] || main.images[stakLayer[i].img]) {
+						var img = main.images[stakLayer[i].animation + (stakLayer[i].fraction ? stakLayer[i].fraction.name : "")]
+						|| main.images[stakLayer[i].animation + ""]
 						|| main.images[stakLayer[i].img + (stakLayer[i].fraction ? stakLayer[i].fraction.name : "")]
 						|| main.images[stakLayer[i].img];
 						ctx.drawImage(img, x, y, z, z);
@@ -85,7 +84,9 @@ function starter () {
 			}
 		})()
 	}
+
 	main.emit("mapParsed");
+	
 	window.engine = function () {
 		main.ctx.clearRect(-innerWidth/2, -innerHeight/2, innerWidth, innerHeight);
 
@@ -102,14 +103,6 @@ function starter () {
 		var w =  innerWidth/main.camera.zoom*main.camera.maxZoom;
 		var h = innerHeight/main.camera.zoom*main.camera.maxZoom;
 		
-		main.particles.list.sort(function (a, b) {
-			if (a.layer > b.layer) return 1
-			else if (a.layer < b.layer) return -1;
-			else return 0;
-		});
-		for (var i = 0; i < main.particles.list.length; i++)
-			main.particles.list[i].update();
-
 		for (var i in main.level.floors) {
 			main.level.floors[i].emit("check");
 			stakLayer.push(main.level.floors[i]);
@@ -120,10 +113,11 @@ function starter () {
 			else if (a.layer < b.layer) return -1;
 			else return 0;
 		});
+
 		for (var i = 0; i < stakLayer.length; i++)
 			main.ctx.drawImage(stakLayer[i].cnv, x, y, w, h, -innerWidth/2, -innerHeight/2, innerWidth, innerHeight);
 
-		if (main.focus) {
+		if (main.focus) { // focus stroke
 			main.ctx.lineWidth = main.focusLine;
 			main.ctx.strokeStyle = main.focus.fraction.name;
 			main.ctx.beginPath();
@@ -143,7 +137,7 @@ function starter () {
 		// отрисовка частиц, in camera?
 		for (var i = 0; i < main.particles.list.length; i++) graphicsDraw(main.particles.list[i], main.ctx);
 
-		if (main.images[main.mouse.cursor]) {
+		if (main.images[main.mouse.cursor]) { // cursor
 			var img = main.images[main.mouse.cursor];
 			var x = main.mouse.x;
 			var y = main.mouse.y;

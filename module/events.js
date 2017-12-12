@@ -7,9 +7,11 @@ Events.prototype.on = function (name, cb) {
 }
 Events.prototype.emit = function (name, argv) {
 	if (this.__events[name]) {
-		for (var i = 0; i < this.__events[name].length; i++) {
-			this.__events[name][i](argv);
-		}
+		var tmp = [];
+		for (var i = 0; i < this.__events[name].length; i++)
+			tmp.push(this.__events[name][i]);
+		for (var i = 0; i < tmp.length; i++)
+			tmp[i](argv);
 	}
 }
 Events.prototype.remove = function (name, cb) {

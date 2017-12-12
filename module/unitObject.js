@@ -16,11 +16,38 @@ main.players = new (function () {
 		main.emit("disconnect", players[name]);
 		delete players[name];
 	};
-	main.on("frame", function () { for (var key in players) for (var i = 0; i < players[key].units.length; i++) players[key].units[i].control.update(); });
+	main.on("frame", function () {
+		for (var key in players)
+			for (var i = 0; i < players[key].units.length; i++) {
+				if (players[key].units[i].animation) players[key].units[i].animation.change();
+				players[key].units[i].control.update();
+			}
+	});
 })();
 main.on("loaded", function () { main.players.add("#ffffff"); });
 main.baseObject = {};
 main.baseObject.__proto__ = Events.prototype;
+main.baseObject.setAnimation = function (anim, time) {
+	var unit = this;
+	if (unit.animation) delete unit.animation;
+	main.level.floors[0].draw = 1;
+	if (!anim) return;
+	unit.animation = {
+		frame: 0,
+		img: anim,
+		time: time,
+		change: function () {
+			unit.animation.time -= main.deltaTime;
+			while (unit.animation.time <= 0) {
+				unit.animation.time += time;
+				unit.animation.frame++;
+				if (!main.images[unit.animation + ""]) unit.animation.frame = 0;
+				else main.level.floors[0].draw = 1;
+			}
+		},
+		toString: function () { return this.img + this.frame; }
+	};
+}
 main.baseObject.deconstract = function () {
 	this.emit("remove");
 	this.fraction.emit("removeUnit", this);
@@ -89,7 +116,6 @@ Control.prototype = {
 		var args = {
 			unit: this.self,
 			name: name,
-			fraction: main.fraction,
 			control: this
 		};
 		if (param) args.__proto__ = param;
@@ -103,7 +129,6 @@ Control.prototype = {
 		var args = {
 			unit: this.self,
 			name: name,
-			fraction: main.fraction,
 			control: this
 		};
 		if (param) args.__proto__ = param;

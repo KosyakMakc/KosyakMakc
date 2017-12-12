@@ -3,18 +3,54 @@
 	margin: 0;
 }
 body {
-	overflow-y: hidden;
-	overflow-x: hidden;
-	background: #0000ff;
+	background: rgba(0, 0, 200, 0.4);
 }
 #menu {
-	margin: 10% 39% 0 39%;
-	width: 20%;
-	background: green;
-	padding: 1%;
+	margin: 30px auto;
+	width: 60%;
 }
-button {
+.header {
+	margin-top: 30px;
+	background: #ccf;
+	padding: 0.5em;
+	border-radius: 1.3em;
+	transition-property: height;
+	transition-duration: 3s;
+}
+.header * {
+	display: none;
+}
+.header *:first-child {
+	border: 0;
+	padding: 0;
+	background: inherit;
 	display: block;
-	width: 100%;
-	margin-top: 1%;
+}
+.header:hover * {
+	transition-property: height;
+	transition-duration: 3s;
+	display: block;
+}
+.header * {
+	font-size: 1em;
+	border: 1px solid green;
+	border-radius: 1em;
+	margin-top: 10px;
+	background: #cfc;
+	padding: 0.5em;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
+}
+.header *:first-child {
+	margin-top: 0;
+}
+.header a:visited {
+	background: #0f0;
+}
+.header a:hover {
+	background: #0b0;
+}
+.header a:active {
+	background: green;
 }
