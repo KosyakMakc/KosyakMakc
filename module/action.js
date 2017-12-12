@@ -98,7 +98,6 @@ function Action(DOM) {
 			}
 		} else if (self.pointers.length == 2) {
 			var dist = Math.sqrt((self.pointers[1].x - self.pointers[0].x)*(self.pointers[1].x - self.pointers[0].x) + (self.pointers[1].y - self.pointers[0].y)*(self.pointers[1].y - self.pointers[0].y));
-			main.message(self.dist + " - " + dist)
 			if (!self.isPinch) {
 				self.isPinch = true;
 				self.pointers[0].isPan = true;
