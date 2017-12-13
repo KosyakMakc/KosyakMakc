@@ -195,7 +195,7 @@ main.level = {
 				var d = Math.sqrt(Math.pow(data.target.tileX - data.unit.x, 2) + Math.pow(data.target.tileY - data.unit.y, 2));
 				if (d < data.unit.distanceAttack) {
 					data.unit.angle = getDirection(data.target.tileX - data.unit.x, data.target.tileY - data.unit.y);
-					function onremove() { data.control.shift(); }
+					function onremove() { obj.remove("remove", onremove); data.control.shift(); }
 					obj.on("remove", onremove);
 					data.unit.setAnimation("img/" + data.unit.name + "Attack" + data.unit.angle + ".png", data.unit.fpsAttack);
 					var a = {

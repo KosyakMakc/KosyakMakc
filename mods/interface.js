@@ -53,24 +53,23 @@ main.on("start", function () {
 	document.body.appendChild(DOM.info);
 
 	function onattack () { DOM.hp.innerHTML = "hp: " + main.focus.health; }
-	function onremove () { main.emit("focus", [, main.focus]); main.focus = undefined; }
+	function onremove () { main.emit("focus"); main.focus = null; }
 
-	main.on("focus", function (arr) {
-		var unit = arr[0];
+	main.on("focus", function (unit) {
+		if (main.focus) {
+			main.focus.remove("attack", onattack);
+			main.focus.remove("remove", onremove);
+		}
 		if (unit) {
 			DOM.info.style.display = "block";
 			DOM.name.innerHTML = unit.name;
 			DOM.hp.innerHTML = "hp: " + unit.health;
 			DOM.damage.innerHTML = unit.attack ? "attack: " + unit.attack : "";
 			DOM.dist.innerHTML = unit.distanceAttack ? "distance attack: " + unit.distanceAttack : "";
-			if (arr[1]) {
-				arr[1].remove("attack", onattack);
-				arr[1].remove("remove", onremove);
-			}
 			unit.on("attack", onattack);
 			unit.on("remove", onremove);
 			if (DOM.commands) DOM.commands.remove();
-			if(unit.fraction.name !== main.fraction) return;
+			if (unit.fraction.name !== main.fraction) return;
 			DOM.commands = document.createElement("div");
 			DOM.commands.className = "commands";
 			for (var i = 0; i < unit.commands.length; i++) {

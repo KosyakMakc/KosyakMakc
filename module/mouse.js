@@ -9,13 +9,12 @@ main.mouse.tap = function (a) {
 	var x = Math.floor((a.x - innerWidth/2)/main.camera.zoom + main.camera.x);
 	var y = Math.floor((a.y - innerHeight/2)/main.camera.zoom + main.camera.y);
 	if (isUnitInTile(x, y)) {
-		var a = main.focus;
+		main.emit("focus", main.level.floors[0].map[y][x].object[0]);
 		main.focus = main.level.floors[0].map[y][x].object[0];
-		main.emit("focus", [main.focus, a]);
 		return;
 	} else if (main.focus) {
-		main.focus = undefined;
-		main.emit("focus", [, main.focus]);
+		main.emit("focus");
+		main.focus = null;
 	}
 }
 main.mouse.pan = function (event) {
