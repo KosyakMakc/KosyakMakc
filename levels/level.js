@@ -43,7 +43,7 @@ main.level = {
 			hide: 1
 		},
 		"1" : {
-			img: "img/dirt.png",
+			img: "img/1.bmp",
 			layer: 1,
 			fill: "#00ff00"
 		},
